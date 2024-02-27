@@ -1,9 +1,19 @@
-import React from "react";
+import React, {Component} from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import Message from './Message';
 
-function App() {
+const initialState = {
+  name: 'Manny',
+  message: 'Typescript is cool'
+}
+
+type State = Readonly<typeof initialState>
+
+
+
+class App extends Component<any, State> {
+  readonly state: State = initialState
   // let firstValue: string = "Manny";
   // let firstValue: number = 34;
   // let firstValue: boolean = true;
@@ -24,15 +34,16 @@ function App() {
   //   console.log('warning')
   // }
   
-
+render(){
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <Message name="Manny" message='this is a simple message'/>
+        <Message name={this.state.name} message={this.state.message}/>
       </header>
     </div>
   );
+}
 }
 
 export default App;
